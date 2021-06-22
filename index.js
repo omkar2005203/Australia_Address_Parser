@@ -6,9 +6,9 @@ var url=require('url');
 var queryString=require('querystring');
 var ServerPort=8000
 
-
-var server=http.createServer(function(req,res){
 try{
+var server=http.createServer(function(req,res){
+
     if(req.url==="/form"){
         res.writeHead(200,{"Content-Type":"text/html"});
         fs.createReadStream("./veiws/form.html","UTF-8").pipe(res);
@@ -27,41 +27,51 @@ try{
      });
      
         req.on("end",function(chunk){
+            try{
             var formdata=queryString.parse(data);
             var dataNew = parser.parseLocation(formdata.address);
             console.log(dataNew);
             res.write("suburb : "+dataNew.suburb+'\n');
+            res.write("\n");
             res.write("state : "+dataNew.state+'\n');
+            res.write("\n");
             res.write("propertyName : "+dataNew.propertyName+'\n');
+            res.write("\n");
             res.write("street : "+dataNew.street+'\n');
+            res.write("\n");
             res.write("street1 : "+dataNew.street1+'\n');
+            res.write("\n");
             res.write("street2 : "+dataNew.street2+'\n');
 
             //combine address
             res.write("\n");
             res.write("unitType: : "+dataNew.unitType+'\n');
+            res.write("\n");
             res.write("unitNumber : "+dataNew.unitNumber+'\n');
+            res.write("\n");
             res.write("streetNumber : "+dataNew.streetNumber+'\n');
+            res.write("\n");
             res.write("streetName : "+dataNew.streetName+'\n');
+            res.write("\n");
             res.write("streetType : "+dataNew.streetType+'\n');
+            res.write("\n");
+            
 
          
-
-
             res.write("Post Code : "+dataNew.postcode+'\n');
         
    
             res.end();
+            }catch(c){
+                return new Error("Please Check address ! Not in proper format!");
+
+            }
 
         });
 
 
     }
 
-}catch (e){
- throw new Error('Address cannot be parse!');
- res.write("Address cannot be parse!")
-}
     
 });
 
@@ -69,4 +79,6 @@ server.listen(ServerPort,()=>{
     console.log('Sever is runnnig at port: '+ServerPort);
 });
 
-
+}catch(e){
+    return new Error("Error !");
+}

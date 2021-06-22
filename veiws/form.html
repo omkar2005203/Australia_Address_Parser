@@ -4,16 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>MMC-Mercer</title>
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["address"].value;
+            if (x == "") {
+                alert("Address Must be filled !");
+                return false;
+  }
+}
+    </script>
 </head>
 <body>
     <h1>Mercer Australian Address Parser</Address></h1>
-    <form action="/" method="POST">
-        <lable>Enter Australian Address:</lable>
+    <br>
+    <form name="myForm" action="/" onsubmit="return validateForm()" method="POST"  required>
+        <lable style="margin:15px;">Enter Australian Address: </lable>
         <input type="text" name="address" value=""/><br>
-
-        <button>Submit</button><br>
-        <input type="reset" value="Reset">
+        <br>
+        <button style="margin:15px;">Submit</button>
+        <br>
+        <input style="margin:15px;" type="reset" value="Reset   ">
+        <br>
     </form>
 </body>
 </html>
