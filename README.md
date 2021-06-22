@@ -1,5 +1,5 @@
 # Australia_Address_Parser
-It's a Node JS Project to parse Australian .
+It's a Node JS Project to parse Australian Postal Address into sub parts .
 
 Install npm module
 1) Install Node JS
