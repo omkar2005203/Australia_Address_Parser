@@ -31,8 +31,11 @@ var server=http.createServer(function(req,res){
                 var formdata=queryString.parse(data);
                 var dataNew = parser.parseLocation(formdata.address);
                 console.log(dataNew);
+                var json = JSON.stringify(dataNew);
+                console.log(json);
                 
                 res.writeHead(200,{"Content-Type":"text/html"});
+                res.write(json);
                 var html="<html>";
                 html+="<head>";
                 html+='<style>.container {width: 500px; clear: both;}.container input {width: 100%;clear: both;}</style>';
@@ -41,7 +44,7 @@ var server=http.createServer(function(req,res){
                 
                 html+="</head>";
                 html+="<body>";
-                html+="Parsed Data is as Follows <br>";
+                html+="<br>Parsed Data is as Follows <br>";
                 html+="<div class='container'>";
                 html+="<form id='Result'>"
                 html+="<lable style='margin:15px;'>suburb :</lable> ";
